@@ -1,0 +1,39 @@
+{% extends "contents/index.html" %}
+
+{% block table %}
+<div class="card-body">
+    <table style="width: 100%;" id="example" class="table table-hover table-striped table-bordered">
+        <thead>
+            <tr><h3>Contenidos</h3></tr>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Slug Name</th>
+                <th>Creation Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for content in contents %}
+                <tr>
+                    <td>{{content.content.id}}</td>
+                    <td>{{content.content.title}}</td>
+                    <td>{{content.content.slug_name}}</td>
+                    <td>{{content.content.creation_date}}</td>
+                    <td>
+                    <a href="{% url 'users:content-edit' content.content.id %}" class="mb-2 mr-2 btn-pill btn btn-info">Edit</a>
+                    <a href="{% url 'users:content-remove' content.id %}" class="mb-2 mr-2 btn-pill btn btn-danger">Delete</a>
+                    </td> 
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Slug Name</th>
+                <th>Creation Date</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>                
+{% endblock %}

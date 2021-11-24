@@ -1,0 +1,93 @@
+{% load static %}
+<div class="scrollbar-sidebar">
+    <div class="app-sidebar__inner">
+        <ul class="vertical-nav-menu">
+            <li class="app-sidebar__heading">Menu</li>
+                <a href="{% url 'users:index' %}" >HOME</a>
+            <li class="mm-active">
+                <a href="#">
+                    <i class="metismenu-icon pe-7s-rocket"></i>
+                    PEDAGOGY MANAGER
+                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="metismenu-icon"></i>
+                            Route
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="{% url 'users:create-route' %}">
+                                    <i class="metismenu-icon">
+                                    </i> Create Route
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:route-list' %}">
+                                    <i class="metismenu-icon">
+                                    </i> Route List
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="metismenu-icon"></i>
+                            Module
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="{% url 'users:create-module' %}">
+                                    <i class="metismenu-icon">
+                                    </i> Create Module
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:module-list' %}">
+                                    <i class="metismenu-icon">
+                                    </i> Module List
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="metismenu-icon"></i>
+                            Content
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="{% url 'users:content-create'%}">
+                                    <i class="metismenu-icon">
+                                    </i> Create Content
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:content-list' %}">
+                                    <i class="metismenu-icon">
+                                    </i> Content List
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:list-blog'%}">
+                                    <i class="metismenu-icon">
+                                    </i>Blog list
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:add-post'%}">
+                                    <i class="metismenu-icon">
+                                    </i>Create Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>    
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+{% extends "contents/base.html" %}
+
+{% block head_content %}
+<title>Create Route</title>
+{% endblock %}
+
+{% block app-main__inner %}
+
+<!-- Here is just the upper elements of the page -->
+<div class="app-page-title">
+<div class="page-title-wrapper">
+    <!-- Here begings the upper text -->
+    <div class="page-title-heading">
+        <!-- Here is the blog icon -->
+        <div class="page-title-icon">
+            <i class="pe-7s-chat icon-gradient bg-sunny-morning"></i>
+        </div>
+        <div>
+            Create Route
+            <div class="page-title-subheading">Module for contents
+            </div>
+        </div>
+    <!-- Here is the big save button -->
+    </div>
+        <div class="page-title-actions">
+        <a href="{% url 'users:index' %}"><button class="btn btn-danger btn-lg">Back</button></a>
+    </div>
+</div>
+
+</div>
+<!-- Here is just the middle elements of the page -->
+<div class="card-body">
+    <form method="post">
+        {% csrf_token %}
+        {{ rform.as_ul }}
+        <input type="hidden" name="form_type" value="rform">
+        <input type="submit" class="btn btn-primary" value="Save">
+    </form>
+</div>
+<div class="card-body">
+    <form method="post">
+        {% csrf_token %}
+        {{ mform.as_ul }}
+        <input type="hidden" name="form_type" value="mform">
+        <input type="submit" class="btn btn-primary" value="Save">
+    </form>
+</div>
+<div class="card-body">
+    <form method="post">
+        {% csrf_token %}
+        {{ rmform.as_ul }}
+        <input type="hidden" name="form_type" value="rmform">
+        <input type="submit" class="btn btn-primary" value="Save">
+    </form>
+</div>
+{% endblock %}

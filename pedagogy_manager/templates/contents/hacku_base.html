@@ -1,0 +1,379 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+
+<head>
+
+    {% block head %}
+
+    {% endblock head %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="es">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>hackU | {% block title %}{% endblock title %}</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="This is an example dashboard created using build-in elements and components.">
+    <meta property="og:title" content="hackU">
+    <meta property="og:site_name" content="hackU">
+    <meta property="og:url" content="https://reinventend.education">
+    <meta property="og:description"
+        content="hackU es una empresa que existe por reinventar el sistema de educación, a través de la tecnología hacemos simple aprender.">
+    <meta property="og:type" content="website">
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta property="og:image" content="{% static 'images/logos/og_logo.png' %}">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="icon" href="{% static 'images/ico.png' %}">
+
+
+    <link href="{% static 'css/theme/template-pro.css' %}" rel="stylesheet">
+    <link href="{% static "css/manager/project.css" %}" rel="stylesheet">
+    <link href="{% static "css/theme/base.css" %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css"
+        integrity="sha256-FdatTf20PQr/rWg+cAKfl6j4/IY3oohFAJ7gVC3M34E=" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/anypicker@latest/dist/anypicker-all.min.css" />
+    <!-- Include Editor style. -->
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet"
+        type="text/css" />
+
+
+    {% block css %}
+    {% endblock %}
+    <style>
+        @media(max-width:767px) {
+            .app-header__logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        #mobile-bell.show {
+            top: 254px !important;
+        }
+
+        .notifications-container .widget-content-left {
+            margin-top: 0px;
+        }
+
+        .widget-heading {
+            opacity: .8;
+            font-weight: normal !important;
+        }
+
+        .popover,
+        .dropdown-menu,
+        .mobile-bell {
+            left: 2% !important;
+            width: 94% !important;
+        }
+
+        .badge-dot-mobile-bell {
+            top: 7px !important;
+            right: 6px !important;
+        }
+
+        .user-icon {
+            color: #513483;
+        }
+
+        .app-footer-center {
+            display: flex;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .footer-icons {
+            padding: 15px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
+        <div class="app-header header-shadow">
+            <div class="app-header__logo">
+                <a href="/">
+                    {% if request.user.get_company_object.logo %}
+                    <img src="{{ request.user.get_company_object.logo.url }}" style="max-width: 80px; max-height: 44px"
+                        alt="">
+                    {% else %}
+                    <img src="{% static 'images/logo.png' %}" style="max-width: 100px; max-height: 66px" alt="">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="app-header__mobile-menu pl-2">
+                <a href="/" class="p-0 mr-2 btn btn-link">
+                    <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                        <span class="icon-wrapper-bg bg-mean-fruit"></span>
+                        <i class="icon user-icon fa fa-user"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div class="app-header__content">
+                <div class="app-header-right">
+
+                    {% comment %}
+                    web right
+                    {% endcomment %}
+
+
+                   
+
+                    <div class="header-dots">
+                        <a href="/" class="p-0 mr-2 btn btn-link">
+                            <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                <span class="icon-wrapper-bg bg-mean-fruit"></span>
+                                <i class="icon user-icon fa fa-user"></i>
+                            </span>
+                        </a>
+
+                       
+                        
+                        <div class="dropdown">
+                            <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"
+                                class="p-0 mr-2 btn btn-link user-notification-button">
+                                {% if not unseen_notifications %}
+                                <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                    <span class="icon-wrapper-bg bg-secondary"></span>
+                                    <i class="icon text-dark ion-android-notifications"></i>
+                                </span>
+                                {% else %}
+                                <span class="icon-wrapper icon-wrapper-alt rounded-circle">
+                                    <span class="icon-wrapper-bg bg-love-kiss"></span>
+                                    <i class="icon text-danger icon-anim-pulse ion-android-notifications"></i>
+                                    <span class="badge badge-dot badge-dot-md badge-danger">2</span>
+                                </span>
+                                {% endif %}
+                            </button>
+                            <div tabindex="-1" role="menu" aria-hidden="true"
+                                class="dropdown-menu-xl rm-pointers dropdown-menu dropdown-menu-right dropdown-menu-web">
+                                <div class="dropdown-menu-header mb-0">
+                                    <div class="dropdown-menu-header-inner bg-amy-crisp">
+
+                                        <div class="menu-header-content">
+                                            <h5 class="menu-header-title text-dark">Notificaciones</h5>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-messages-header" role="tabpanel">
+                                        <div class="scroll-area-sm">
+                                            <div class="scrollbar-container scrollbar-sidebar">
+                                                <div class="p-3">
+                                                    <div class="notifications-box">
+                                                        <div class="vertical-timeline--one-column">
+                                                            <ul class="nav flex-column">
+
+                                                                {% for notification in user_notifications %}
+                                                                <span
+                                                                    onclick="window.location.href='/notification/{{ notification.pk }}'">
+
+
+                                                                    <div class="col-12 m-0 p-0">
+                                                                        <div class="row">
+                                                                            <div class="col-2">
+                                                                                <div class="avatar-icon">
+                                                                                    <img src="{% static "images/user.png" %}" alt="">
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="col-8 ml-1 pl-1 mr-0 pr-0">
+                                                                                <div class="widget-heading">
+                                                                                    {{notification.description}}
+                                                                                    <div class="widget-subheading">
+                                                                                        {{notification.how_much_ago}}
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            {% if not notification.is_seen %}
+                                                                            <div class="col-1 m-0">
+                                                                                <span
+                                                                                    class="badge badge-dot badge-dot-lg badge-danger mt-3">2</span>
+                                                                            </div>
+                                                                            {% endif %}
+
+                                                                        </div>
+                                                                    </div>
+                                                                </span>
+                                                                <hr width="100%">
+                                                                {% endfor %}
+
+                                                                {% if not user_notifications %}
+                                                                Aún no tienes notificaciones
+                                                                {% endif %}
+
+
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="nav flex-column">
+                                    <li class="nav-item-divider nav-item"></li>
+                                    <li class="nav-item-btn text-center nav-item">
+                                        <button class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm"
+                                            onclick="closeNotification()">Cerrar</button>
+                                        <button class="btn-shadow btn-warning btn-wide btn-pill btn btn-sm"
+                                            onclick="cleanPlatformNotification()">Limpiar mis notificaciones</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="app-main">
+            <div class="app-main__inner">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3 mb-3">
+                        {% block base_messages %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span>
+                            </button>{{ message }}
+
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endblock %}
+                    </div>
+                </div>
+                {% block content %}
+                {% endblock content %}
+
+            </div>
+
+        </div>
+        <div class="app-footer">
+            <div class="app-footer__inner">
+                <div class="app-footer-center">
+                    <div class="footer-dots">
+                        <a href="https://www.facebook.com/hackueducacion" target="_blank">
+                            <i class="fab fa-facebook-f footer-icons"></i>
+                        </a>
+                        <a href="https://www.instagram.com/hackueducacion/?hl=es-la" target="_blank">
+                            <i class="fab fa-instagram footer-icons"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-drawer-overlay d-none animated fadeIn"></div>
+
+    <script type="text/javascript"
+        src="{% static 'corporative/assets/scripts/main.87c0748b313a1dda75f5.js' %}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script type="text/javascript"src="{% static 'js/barrating.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        var rated = false
+        var nps_active = (("{{nps_active}}" == "False") ? false : true);
+        if (nps_active) {
+            swal_alert = Swal.fire({
+                title: '¿De 1 a 10 qué tan probable es que recomiendes la experiencia hackU a alguien?',
+                icon: 'question',
+                html:
+                    "<div class='card-body hacku-rating' id='rating-container'>\
+                        <h5 class='bars-pill'></h5>\
+                        <select id='rating-pill' class='rate'>\
+                            <option value='1'>1</option>\
+                            <option value='2'>2</option>\
+                            <option value='3'>3</option>\
+                            <option value='4'>4</option>\
+                            <option value='5'>5</option>\
+                            <option value='6'>6</option>\
+                            <option value='7'>7</option>\
+                            <option value='8'>8</option>\
+                            <option value='9'>9</option>\
+                            <option value='10'>10</option>\
+                        </select>\
+                    </div>",
+                showCloseButton: true,
+                showConfirmButton: false,
+                showCancelButton: false,
+                focusConfirm: false,
+                allowOutsideClick: false,
+                onClose: () => {
+                    if (!rated){
+                        sendNpsMetric('close', null)
+                    }
+                }
+
+            })
+        }
+        $('#rating-pill').barrating('show', {
+            theme: "bars-pill",
+            showValues: true,
+            showSelectedRating: false,
+            allowEmpty: false,
+            initialRating: null,
+            onSelect: function(value, text) {
+                document.getElementById('rating-container').innerHTML = '<i class="fa fa-spinner fa-spin"></i> Enviando...'
+                sendNpsMetric('rating', value)
+                rated = true
+            }
+        });
+
+        function closeNotification() {
+            $('.dropdown-menu-right').removeClass("show");
+        }
+
+
+
+    </script>
+    {% block js %}
+    {% endblock %}
+
+
+</body>
+
+</html>

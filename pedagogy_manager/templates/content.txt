@@ -1,0 +1,8 @@
+Horno:
+Ancho: 60 cm – Alto: 62 cm – Profundo: 53 cm
+
+Estufa
+ancho: 60 cm - alto: 10,4 cm - profundo: 43cm
+
+Campana
+Ancho: 60 cm - Alto: 11 cm - profundo: 45,6 cm

@@ -1,0 +1,381 @@
+{% extends "contents/hacku_base.html" %}
+{% load static %}
+{% block title %}Contenido{% endblock %}
+
+
+{% block css %}
+
+<link href="{% static 'css/content/content-viewer.css' %}" rel="stylesheet">
+<link href="{% static 'blog/css/style.css' %}" rel="stylesheet">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery-bar-rating/1.2.2/themes/fontawesome-stars.css"
+  integrity="sha256-7XbHJ8LVy7s+vmzmqyO5aLt9Ak1Kx8psBk61OfKbUL0=" crossorigin="anonymous" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<style>
+  .center {
+    line-height: 200px;
+    height: 200px;
+    border: 3px solid green;
+    text-align: center;
+  }
+
+  .center p {
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .br-widget {
+    margin: 0 auto;
+  }
+  .br-wrapper.br-theme-css-stars .br-selected.br-current {
+    background: transparent !important;
+  }
+  .br-wrapper.br-theme-css-stars {
+    width: 117px !important;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+<style>
+  #sort-comments-container {
+      position: absolute;
+      background: white;
+      width: 230px;
+      z-index: 99;
+      padding: 10px;
+      right: 15px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      box-shadow: #ababab30 0px 1px 1px 1px;
+  }
+
+  .sort-comments {
+      padding: 10px 0px;
+      text-align: end;
+  }
+
+  .custom-select-comments {
+      position: relative;
+      font-family: Arial;
+  }
+
+  .custom-select-comments select {
+      display: none;
+  }
+
+  .custom-select-comments {
+      background-color: white;
+  }
+
+  .custom-select-comments:after {
+      position: absolute;
+      content: "";
+      top: 14px;
+      right: 3px;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-color: #000 transparent transparent transparent;
+  }
+
+  .custom-select-comments.select-arrow-active:after {
+      border-color: transparent transparent #000 transparent;
+      top: 7px;
+  }
+
+  .select-items div,
+  .custom-select-comments {
+      color: #000;
+      padding: 8px 16px;
+      border: 1px solid transparent;
+      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+      cursor: pointer;
+  }
+
+  .select-items {
+      position: absolute;
+      background-color: white;
+      top: 100%;
+      right: 0;
+      z-index: 99;
+      box-shadow: #e7e7e7 0px 5px 10px 1px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      width: 200px;
+  }
+
+  .select-hide {
+      display: none;
+  }
+
+  .select-items div:hover,
+  .same-as-selected {
+      background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .reply-field {
+      width: 100%;
+      padding-right: 15%;
+      padding-left: 1%;
+  }
+
+  textarea#reply-field {
+      min-height: 27px;
+  }
+
+  .reply-form .btn-reply {
+      background: #3f6ad8;
+      color: white;
+      border: 0;
+      width: 15%;
+      position: absolute;
+      right: 0;
+      bottom: 0px;
+  }
+
+  .reply-form .inner-form {
+      position: relative;
+      display: flex !important;
+  }
+
+  .reply-comment {
+      position: relative;
+  }
+
+  .comment-action a {
+      padding: 20px;
+      position: relative;
+      top: 5px;
+  }
+
+  .user-profile-image {
+      height: auto !important;
+      width: 30px !important;
+  }
+
+  .reply-text {
+      margin-left: 34px !important;
+  }
+
+  .comment-reply-detail {
+      padding-left: 10px;
+  }
+
+  .chat-box {
+      box-shadow: 0 0 0 transparent;
+      position: relative;
+      opacity: 1;
+      background: #e0f3ff;
+      border: 0;
+      padding: 0.25rem 0.5rem;
+      border-radius: 30px;
+      border-top-left-radius: 0.25rem;
+      flex: 1;
+      display: flex;
+      max-width: 90%;
+      text-align: left;
+  }
+
+  .chat-box p {
+      padding: 0;
+      margin: 0;
+  }
+
+  .ion-ios-heart:before {
+      content: "";
+      font-size: 17px;
+      margin-right: 2px;
+      position: relative;
+      top: -2px;
+  }
+  .br-wrapper.br-theme-css-stars .br-selected.br-current {
+    background: transparent !important;
+  }
+  .br-wrapper.br-theme-css-stars {
+    width: 117px !important;
+    display: block;
+    margin: 0 auto;
+  }
+  
+</style>
+{% endblock css %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <div class="main-card mb-3 card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="widget-content p-0">
+            <div class="widget-content-outer">
+              <div class="content-viewer text-center mt-3">
+                <div class="banner-info">
+                  <div class="d-flex justify-content-start">
+
+                    <a class="mb-2 mr-2 btn-icon btn-pill btn btn-outline-dark" href="#"><i
+                        class="pe-7s-angle-left-circle btn-icon-wrapper"> </i>Regresar</a>
+                  
+
+
+                  </div>
+                  <h4 class="head-green-text">¡{{ request.user.hacku_name|title }}!</h4>
+                  <p>Este es tu espacio de aprendizaje</p>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-0 pb-0">
+                    <p class="m-0 mb-1"><strong>Modo de lectura:</strong></p>
+                    <input type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-moon'></i> Oscuro" class="mt-2"
+                      data-off="<i class='fa fa-sun'></i> Claro" onchange="changeDarkMode()">
+                
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <div id="appCapsule">
+            <div class="blog-post dark-mode-active" id="main-blog">
+              <div class="mb-2">
+                  <img src="{% static image_static %}" alt="image" class="imaged square w-100">
+              </div>
+              <h1 class="title">{{blog.title}}</h1>
+
+              <div class="post-header">
+                <div>
+                  <a href="#">
+                    <img src="{% static 'images/ico.png' %}" alt="avatar"
+                      class="imaged w24 rounded mr-05">
+                    {{blog.owner}}
+                  </a>
+                </div>
+                {{blog.publication_date|default:blog.created}}
+              </div>
+              <div class="post-content">
+                {{blog.content|safe}}
+              </div>
+            </div>
+
+          </div>
+          <li class="list-group-item">
+            <div class="widget-content p-0">
+              <div class="widget-content-outer">
+                <div class="content-viewer text-center mt-3">
+              
+
+                  <div class="col-md-12 mb-5">
+                  {% if content.footer %}
+                  <div class="content-footer mt-1 mb-0 pb-0">
+                    <b>{{ content.footer }}</b>
+                    {% if content.content_file %}
+                    <div class="file">
+                      <a href="{{ content.content_file.url }}" class="mt-2 mr-2 btn-icon btn-pill btn btn-outline-info" download="{{content.slug_name}}" target="_blank"><i class="pe-7s-cloud-download btn-icon-wrapper"> </i>Clic aquí</a>
+                    </div>
+                    {% endif %}
+                  </div>
+                  {% endif %}
+                  <div class="row d-flex justify-content-center mt-4">
+                    <div class="col-12">
+                      <p>¿Qué tal te pareció el contenido?</p>
+                    </div>
+                    <!--Grid column-->
+                    <div class="col-6 text-center">
+                      <select id="css-stars" >
+                        <option disabled selected value></option>
+                        {% if metric_rating == 1 %}
+                          <option value="1" selected>1</option>
+                        {% else %}
+                          <option value="1">1</option>
+                        {% endif %}
+
+                        {% if metric_rating == 2 %}
+                          <option value="2" selected>2</option>
+                        {% else %}
+                          <option value="2">2</option>
+                        {% endif %}
+
+                        {% if metric_rating == 3 %}
+                          <option value="3" selected>3</option>
+                        {% else %}
+                          <option value="3">3</option>
+                        {% endif %}
+
+                        {% if metric_rating == 4 %}
+                          <option value="4" selected>4</option>
+                        {% else %}
+                          <option value="4">4</option>
+                        {% endif %}
+
+                        {% if metric_rating == 5 %}
+                          <option value="5" selected>5</option>
+                        {% else %}
+                          <option value="5">5</option>
+                        {% endif %}
+
+                      </select>
+                    </div>
+
+                    {% if not is_favorite %}
+                    <div class="col-12 text-center mt-4">
+                      <button class="btn-wide btn-pill btn btn-alternate btn-sm favorite-btn">
+                        <span style="line-height:20px"> Marcar como favorito 💛 </span>
+                      </button>
+                    </div>
+                    {% endif %}
+
+                    <div class="col-12 text-center mb-4 mt-2">
+
+                      <button class="btn-wide btn-pill btn btn-success btn-sm comments-btn">👉Leer
+                        comentarios👈
+                      </button>
+                    </div>
+
+                    <div class="banner-client mt-4">
+                      {% for banner in banners %}
+                      <img src="{{ banner.logo.url }}" class="img-fluid" alt="Responsive image">
+                      {% endfor %}
+                    </div>
+                    <!--Grid column-->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-12 p-0">
+      <div class="card mb-3">
+        <div class="card-content">
+          <a href="javascript:void(0)"></a>
+            {% csrf_token %}
+            <textarea rows="1" class="form-control autosize-input comment-text-area media" style="height: 77px;"
+              placeholder="{{ user.hacku_name|title }}, ¿qué opinas sobre el contenido?" name="comment"
+              required></textarea>
+            <button class="mt-1 mb-2 mr-2 btn btn-shadow btn-sm btn-block btn-publish" id="btn-publish"
+              style="background-color: #3f6ad8;color: white;" >Publicar
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+  function showReply(id){
+    document.getElementById(id).focus();
+  }
+  function changeDarkMode() {
+    var main_blog = document.getElementById("main-blog");
+    if (main_blog.classList.contains("dark-mode-active")) {
+      main_blog.classList.remove("dark-mode-active");
+    }
+    else {
+      main_blog.classList.add("dark-mode-active");
+    }
+  }
+</script>
+{% endblock js %}

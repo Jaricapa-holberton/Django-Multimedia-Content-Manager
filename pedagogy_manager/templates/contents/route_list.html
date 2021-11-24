@@ -1,0 +1,37 @@
+{% extends "contents/base.html" %}
+{% block head_content %}
+<title>Route List</title>
+{% endblock %}
+{% block app-main__inner %}
+<div class="app-page-title">
+<div class="page-title-wrapper">
+    <div class="page-title-heading">
+        <div class="page-title-icon">
+            <i class="pe-7s-chat icon-gradient bg-sunny-morning"></i>
+        </div>
+        <div>
+            Routes list
+            <div class="page-title-subheading">This are all the routes on the databases
+            </div>
+        </div>
+    </div>
+        <div class="page-title-actions">
+        <a href="{% url 'users:create-route' %}"><button class="btn btn-success btn-lg">Add route</button></a>
+    </div>
+</div>
+</div>
+{% for post in object_list %}
+    <div class="main-card mb-3 card">
+        <div class="card-header">{{ post.name }}</div>
+        <div class="card-body">
+            <p>Area: {{ post.area }}</p>
+            <p class="mb-0">{{ post.module }}</p>
+        </div>
+        <div class="d-block text-right card-footer">
+            <a href="{% url 'users:edit-route' post.pk %}"><button class="btn btn-primary btn-lg">Edit</button></a>
+            <a href="{% url 'users:remove-route' post.pk %}"><button class="btn btn-danger btn-lg">Delete</button></a>
+        </div>
+    </div>
+{% endfor %}
+</ul>
+{% endblock %}

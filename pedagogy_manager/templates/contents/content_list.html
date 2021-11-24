@@ -1,0 +1,38 @@
+{% extends "contents/base.html" %}
+{% block head_content %}
+<title>Content List</title>
+{% endblock %}
+{% block app-main__inner %}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-chat icon-gradient bg-sunny-morning"></i>
+            </div>
+            <div>
+                Content list
+                <div class="page-title-subheading">This are all the posts on the databases
+                </div>
+            </div>
+        </div>
+        <div class="page-title-actions">
+            <a href="{% url 'users:content-create' %}"><button class="btn btn-success btn-lg">Add Content</button></a>
+        </div>
+    </div>
+</div>
+{% for content in object_list %}
+    <div class="main-card mb-3 card">
+        <div class="card-header">{{ content.title }}</div>
+        <div class="card-body">
+            <p>{{ content.slug_name }}</p>
+            <p class="mb-0">{{ content.date_content }}</p>
+        </div>
+        <div class="d-block text-right card-footer">
+            <a href="{% url 'users:content-detail' content.pk %}"><button class="btn btn-light btn-lg">View</button></a>
+            <a href="{% url 'users:content-edit' content.pk %}"><button class="btn btn-primary btn-lg">Edit</button></a>
+            <a href="{% url 'users:content-remove' content.pk %}"><button class="btn btn-danger btn-lg">Delete</button></a>
+        </div>
+    </div>
+{% endfor %}
+</ul>
+{% endblock %}

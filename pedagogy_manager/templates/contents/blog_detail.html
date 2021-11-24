@@ -1,0 +1,36 @@
+{% extends "contents/base.html" %}
+{% block head_content %}
+<title>Post Detail</title>
+{% endblock %}
+{% block app-main__inner %}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-chat icon-gradient bg-sunny-morning"></i>
+            </div>
+            <div>
+                Posts Detail
+                <div class="page-title-subheading">Read a specific post
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-card mb-3 card" style=" width: 100%; height: 800px; overflow: hidden;" frameborder="0">
+    <div class="card-body" style=" width: 100%; height: 800px; overflow: hidden;" frameborder="0">
+        <h5 class="card-title">{{ blog.title }}</h5>
+        <div class="scroll-area-lg" style=" width: 100%; height: 800px; overflow: hidden;" frameborder="0">
+            <div class="scrollbar-container ps--active-y ps" style=" width: 100%; height: 800px; overflow: hidden;" frameborder="0">
+                <div>
+                        <div class="readonly">
+                            {% csrf_token %}
+                            {{ url }}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="{% url 'users:list-blog'%}"><button class="btn btn-danger btn-lg">Back</button></a>
+{% endblock %}

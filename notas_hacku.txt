@@ -1,0 +1,33 @@
+
+sobre el ipbd:
+
+    Con el servidor corriendo en una terminal aparte para poder ver el template:
+
+    1* mostrar cual es el container que tiene el servicio de django
+    usar " sudo docker-compose ps "
+
+    2* Detener ese servicio de dicho container
+    usar " sudo docker rm -f content-manager_django_1 "
+
+    3* Correr ahora un container de django de forma aisalda
+    usar " sudo docker-compose run --rm --service-ports django "
+
+    4* Poner el break donde estimes que empieza a fallar el codigo
+    usar " import ipdb; ipdb.set_trace() "
+
+    5* recargar la pagina del template
+        + si la linea del break funciona, la recarga de la pagina no se completa (queda en stand by)
+        + si no funciona, la pagina recarga normalmente... lo que indica que hay que poner el break en otra parte
+
+    6* Al recargar, en la terminal donde se ejecuta django, aparece ipdb correindo como debuger
+
+    algunos comandos de la shell:
+    [NOMBRE_DE_LA_VARIABLE]: imprime el valor de la variable u objeto (ej: kwargs imprime lo que sea que tenga en "kwargs")
+
+    c: el programa continua su ejecución
+
+sobre el error account_login:
+
+    debido a los mixin que tiene el servicio, no deja ver las vistas si no estas logeado.
+    Para volver a logearte debes entrar al admin... poner la cuenta y clave ...
+    ya una vez dentro, estarás logeado y podras cambiar a la url que deseas directamente

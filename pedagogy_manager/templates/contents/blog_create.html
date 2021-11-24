@@ -1,0 +1,102 @@
+{% extends "contents/base.html" %}
+{% block head_content %}
+<title>Create Blog</title>
+{% endblock %}
+{% block app-main__inner %}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-chat icon-gradient bg-sunny-morning"></i>
+            </div>
+            <div>
+                Create Blog
+                <div class="page-title-subheading">Blog for Contents
+                </div>
+            </div>
+        </div>
+            <div class="page-title-actions">
+            <a href="{% url 'users:list-blog' %}"><button class="btn btn-danger btn-lg">Back</button></a>
+            </div>
+    </div>
+</div>
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">Text info</h5>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="position-relative row form-group">
+            <label class="col-sm-2 col-form-label">{{form.content.label}}</label>
+                <div class="col-sm-10">
+                    {{form.content}}
+                    <div id="cke_editor" class="cke_1 cke cke_reset cke_chrome cke_editor_editor cke_ltr cke_browser_gecko" dir="ltr" role="application" aria-labelledby="cke_editor_arialbl" lang="en">
+                        <span id="cke_editor_arialbl" class="cke_voice_label">Rich Text Editor, editor</span>
+                        <div class="cke_inner cke_reset" role="presentation" style="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+            <script>CKEDITOR.replace('content');</script>
+            <hr>
+            <div class="position-relative row form-group">
+                <label for="exampleText" class="col-sm-2 col-form-label">{{ form.title.label }}</label>
+                <div class="col-sm-10">
+                    {{ form.title }}
+                </div>
+            </div>
+            <hr>
+            <div class="position-relative row form-group">
+                <label for="exampleText" class="col-sm-2 col-form-label">{{ form.slug_name.label }}</label>
+                <div class="col-sm-10">
+                    {{ form.slug_name }}
+                </div>
+            </div>
+            <hr>
+            <div class="position-relative row form-group">
+                <label for="exampleText" class="col-sm-2 col-form-label">{{ form.owner.label }}</label>
+                <div class="col-sm-10">
+                    {{ form.owner }}
+                </div>
+            </div>
+            <hr>
+            <div class="position-relative row form-group">
+                <label for="exampleText" class="col-sm-2 col-form-label">{{ form.url.label }}</label>
+                <div class="col-sm-10">
+                    {{ form.url }}
+                </div>
+            </div>
+            <hr>
+            <div class="position-relative row form-group">
+                <label for="exampleText" class="col-sm-2 col-form-label">{{ form.publication_date.label }}</label>
+                <div class="col-sm-10">
+                    {{ form.publication_date }}
+                    <div class="auto" id="auto" style="visibility: hidden">
+                        Oculta
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary datepicker-trigger-btn" type="button">Open Datepicker</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="position-relative row form-group">
+                <label for="exampleText" class="col-sm-2 col-form-label">{{ form.header_image.label }}</label>
+                <div class="col-sm-10">
+                    {{ form.header_image }}
+                    <small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                </div>
+            </div>
+            <hr>
+            <div class="position-relative row form-check">
+                <div class="col-sm-10 offset-sm-2">
+                    <input class="btn btn-success btn-lg" type="submit" value="Save">
+                </div>
+            </div>
+            <div class="auto" id="auto" style="visibility: hidden">
+                Oculta
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

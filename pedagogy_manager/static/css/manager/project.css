@@ -1,0 +1,21 @@
+.bootstrap-table .fixed-table-toolbar .bs-bars, .bootstrap-table .fixed-table-toolbar .search, .bootstrap-table .fixed-table-toolbar .columns {
+    margin-right: 10px;
+    height: calc(2.25rem + 2px);
+}
+
+.bootstrap-table .fixed-table-pagination>.pagination-detail, .bootstrap-table .fixed-table-pagination>.pagination {
+    margin-left: 10px;
+}
+
+.fixed-table-container{
+    height: auto !important;
+    padding-bottom: 0px !important;
+}
+
+.fixed-table-border{
+    height: 0px !important;
+}
+
+.app-sidebar{
+    overflow-y: auto;
+}

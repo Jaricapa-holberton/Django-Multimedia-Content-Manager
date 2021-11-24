@@ -1,0 +1,196 @@
+.app-footer-center {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+  }
+  
+  .head-green-text {
+    color: #4c9187;
+  }
+  
+  .nav-item-social {
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: auto;
+    margin: 15px;
+  }
+  
+  .pretty {
+    flex: 1;
+  }
+  
+  .days-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .btn-primary {
+    transition: 0.5s;
+    background-size: 200% auto;
+    background-color: #533586 !important;
+    border-color: #533586 !important;
+  }
+  
+  .btn-primary:hover {
+    background-position: right center;
+    background-color: #533586 !important;
+  }
+  
+  
+  a {
+    color: #513483;
+  }
+  
+  a:hover {
+    color: #533586;
+  }
+  
+  .justify-center-flex {
+    justify-content: center;
+  }
+  
+  .border-card {
+    border: 1px solid;
+    border-color: #dedede;
+  }
+  
+  .waybox-button {
+    transition: 0.5s;
+    background-size: 200% auto;
+  }
+  
+  .icon-title {
+    font-size: 1.65rem;
+    margin-right: .625rem;
+  }
+  
+  .white-text {
+    color: white !important;
+  }
+  
+  .center-vertically {
+    margin-top: 25%;
+  }
+  
+  .div-flex {
+    display: flex;
+    width: 100%;
+  }
+  
+  .introjs-skipbutton {
+    background-color: #6c757d !important;
+    color: white !important;
+    border-color: #6c757d !important;
+  }
+  
+  .introjs-prevbutton {
+    background-color: #6c757d !important;
+    color: white !important;
+    border-color: #6c757d !important;
+  }
+  
+  
+  .introjs-donebutton {
+    float: right;
+    background-color: #2e9d64 !important;
+    border-color: #2b935e !important;
+  }
+  
+  .days-container {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 0 !important;
+  }
+  
+  .row-days {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .main-title {
+    display: inline-block;
+    text-transform: lowercase;
+  }
+  
+  .main-title:first-letter {
+    text-transform: capitalize !important;
+  }
+  
+  .badge-success {
+    background-color: #f92e53 !important;
+  }
+  
+  @media(max-width:474px) {
+    .card-body.hacku-rating .br-widget a {
+      padding: 7px 12px;
+    }
+  
+    .swal2-popup.swal2-modal.swal2-icon-question.swal2-show {
+  
+      width: 100%;
+      padding: 7px;
+    }
+  
+    .hacku-rating {
+      padding: 10px 0px;
+    }
+  }
+  .br-theme-bars-pill .br-widget a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-radius: 5px;
+  }
+  
+  .br-theme-bars-pill .br-widget a:last-child {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-radius: 5px;
+  }
+  
+  .br-theme-bars-pill .br-widget a {
+    color: black;
+    background: #c8c8c8;
+    margin: 3px;
+    padding: 6px !important;
+    font-weight: bold;
+    width: 32px !important;
+    display: inline-block;
+    height: 40px;
+    line-height: 28px;
+    font-size: 17px;
+    border-radius: 5px;
+  }
+  
+  .br-theme-bars-pill .br-widget a.br-active,
+  .br-theme-bars-pill .br-widget a.br-selected {
+    background-color: #9e9e9e !important;
+    color: white !important;
+  }
+  a.br-selected.br-current {
+    background-color: #9e9e9e !important;
+    color: white !important;
+  }
+  @media (max-width: 375px) {
+    .br-theme-bars-pill .br-widget a {
+      margin: 2px;
+      width: 26px !important;
+      font-size: 14px;
+      padding: 2px !important;
+      line-height: 33px;
+    }
+  }
+  @media (max-width: 320px) {
+    .br-theme-bars-pill .br-widget a {
+      margin: 2px;
+      width: 24px !important;
+      font-size: 13px;
+      padding: 2px !important;
+      line-height: 35px;
+    }
+  }

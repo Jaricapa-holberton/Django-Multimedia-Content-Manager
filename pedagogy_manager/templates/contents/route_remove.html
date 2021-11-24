@@ -1,0 +1,41 @@
+{% extends "contents/base.html" %}
+{% block head_content %}
+<title>Delete route</title>
+{% endblock %}
+{% block app-main__inner %}
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-chat icon-gradient bg-sunny-morning"></i>
+            </div>
+            <div>
+                Delete route
+                <div class="page-title-subheading">Delete a specific route
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="main-card mb-3 card">
+        <div class="auto" id="auto" style="visibility: hidden">
+            Oculta
+        </div>
+        <div class="card-header">
+            <h1><b>ATTENTION</b></h1>
+        </div>
+        <div class="auto" id="auto" style="visibility: hidden">
+            Oculta
+        </div>
+        <div class="card-body">
+            <h3>Are you totally sure to delete the route: <b><u>{{object.name }}</u></b> ?</h3>
+        </div>
+        <div class="d-block text-right card-footer">
+            <a href="{% url 'users:route-list'%}"><button class="btn btn-secondary btn-lg">Back</button></a>
+            <button class="btn btn-danger btn-lg" type="submit">Confirm</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

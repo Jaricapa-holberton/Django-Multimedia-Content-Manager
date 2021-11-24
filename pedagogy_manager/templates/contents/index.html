@@ -1,0 +1,69 @@
+{% extends "contents/base.html"%}
+
+{% block head_content %}
+    <title>Home</title>
+{% endblock %}
+
+{% block app-main__inner %}
+{{route|default:' '}}
+<div class="app-main__inner p-0">
+    <div class="app-inner-layout chat-layout">
+        <div class="app-inner-layout__header text-white bg-premium-dark">
+            <div class="app-page-title">
+                <div class="form-row">
+                    <div class="col-md-3">
+                        <div class="page-title-heading">
+                            <div class="page-title-icon">
+                                <i class="pe-7s-paper-plane icon-gradient bg-mean-fruit">
+                                </i>
+                            </div>
+                            <div>Hacku Content Manager
+                                <div class="page-title-subheading">Oct. 21, 2021, 3 p.m..
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 search">
+                        <form method="get">
+                            <div class="select2-selection__rendered" role="textbox" aria-readonly="true"><h3>RUTA</h3></div>
+                            {{ form }}
+                            <button type="submit" class="mt-2 mr-2 btn btn-shadow btn-success" value="{{route.id}}">Consultar
+                                
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="col align-self-center">
+                        <div><h6>Company: <br>{{route.company}}</br></h6></div>
+                        <div><h6>Area: <br>{{route.area}}</br></h6></div>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="app-inner-layout__wrapper row-fluid no-gutters">
+            <div class="app-inner-layout__sidebar bg-transparent card">
+                <div class="p-3">
+                    <div class="dropdown-menu nav p-0 dropdown-menu-inline dropdown-menu-rounded dropdown-menu-hover-primary">
+                        <div><h3>Modulos</h3></div>
+                        {% if route_modules %}
+                        {% for route_module in route_modules %}
+                            <a href="{% url 'users:content-module-detail' route_module.id %}"
+                            class="mb-1 dropdown-item
+                            {% if route_module.id == route_module_detail.id %} active {% endif %}
+                            "
+                            >{{route_module.module.name}}</a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="app-inner-layout__content card">
+            {% block table %}
+            {% endblock table %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
